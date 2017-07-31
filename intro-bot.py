@@ -23,7 +23,7 @@ async def ping(ctx):
 async def on_member_join(member):
     global default_role
     print('New user joined')
-    bot.add_roles(member, default_role)
+    await bot.add_roles(member, default_role)
 
 @bot.command(pass_context=True)
 async def setdefaultrole(ctx, def_role: discord.Role):
@@ -34,11 +34,11 @@ async def setdefaultrole(ctx, def_role: discord.Role):
         print(role.name)
         if def_role == role:
             default_role = role
-            bot.say('Default role set to ' + default_role.mention)
+            await bot.say('Default role set to ' + default_role.mention)
             print('Role set')
             break
     if default_role == '':
-        bot.say('No role named ' + def_role.name + ' found')
+        await bot.say('No role named ' + def_role.name + ' found')
     print('Loop exit')
 
 @bot.event
